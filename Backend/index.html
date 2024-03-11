@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Station Data Table</title>
+    <!-- Include DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #station-table { width: 100%; }
+    </style>
+</head>
+<body>
+
+<h2>Station Data Table</h2>
+<table id="station-table" class="display">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Position</th>
+            <th>Banking</th>
+            <th>Bonus</th>
+            <th>Status</th>
+            <th>Contract Name</th>
+            <th>Bike Stands</th>
+            <th>Available Bike Stands</th>
+            <th>Available Bikes</th>
+            <th>Last Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Data will be inserted here by DataTables -->
+    </tbody>
+</table>
+
+<!-- Include jQuery and DataTables JavaScript -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#station-table').DataTable({
+        "ajax": {
+            "url": "http://localhost:5000/data",
+            "dataSrc": ""
+        },
+        "columns": [
+            { "data": "number" },
+            { "data": "name" },
+            { "data": "address" },
+            {
+                "data": null,
+                "render": function (data, type, row) {
+                    return 'Lat: ' + row.position_lat + ', Lng: ' + row.position_lng;
+                }
+            },
+            { "data": "banking", "render": function(data, type, row) { return data ? 'Yes' : 'No'; }},
+            { "data": "bonus", "render": function(data, type, row) { return data ? 'Yes' : 'No'; }},
+            { "data": "status" },
+            { "data": "contract_name" },
+            { "data": "bike_stands" },
+            { "data": "available_bike_stands" },
+            { "data": "available_bikes" },
+            { "data": "last_update" }
+        ],
+        "order": [[1, 'asc']]
+    });
+});
+</script>
+
+</body>
+</html>
