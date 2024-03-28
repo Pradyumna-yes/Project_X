@@ -16,8 +16,8 @@ app.config['MYSQL_DB'] = 'we2'
 mysql = MySQL(app)
 
 @app.route('/')
-def home():
-    return jsonify({"message": "Welcome to the Project X"})
+def index():
+    return render_template('index.html')
     
     
 users = {
