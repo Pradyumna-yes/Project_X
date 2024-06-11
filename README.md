@@ -1,0 +1,1 @@
+This Project is focused on fetching external data from an API, processing it, and then storing it into a MySQL database, while ensuring that all dependencies and connections are correctly managed and potential errors are appropriately handled.
